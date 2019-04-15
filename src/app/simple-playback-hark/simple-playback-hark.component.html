@@ -1,0 +1,26 @@
+<h2>Simple Audio Playback with Hark</h2>
+
+<p class="description">
+  This is a small variation on the <a [routerLink]="['playback']">Simple Playback</a>
+  of in-browser audio capture. In this version the audio stream does not timeout automatically. Instead
+  we use the <a href="https://github.com/otalk/hark">Hark</a> package to automatically determine when the speaker
+  is finished speaker, at which time the stream is terminated.
+</p>
+
+<div class="audio-panel">
+
+  <p class="directions">Click to the microphone icon to record. The stream will
+    automatically detect when you are finished speaking. The audio controls can then be used
+    to play/replay the captured stream.
+  </p>
+
+  <button mat-icon-button *ngIf="!recording" (click)="record()">
+    <mat-icon>mic</mat-icon>
+  </button>
+  <button mat-icon-button *ngIf="recording" (click)="stop()">
+    <mat-icon>mic_off</mat-icon>
+  </button>
+  <div class="pulse" *ngIf="recording"></div>
+
+  <audio #audioElement></audio>
+</div>
