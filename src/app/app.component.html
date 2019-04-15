@@ -16,6 +16,17 @@
         <span class='arrow'>&#9656;</span>
         <a [routerLink]="['simple']">Simple</a>
       </li>
+      <li routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+        true}">
+        <span class='arrow'>&#9656;</span>
+        <a [routerLink]="['playback']">Playback</a>
+      </li>
+      <li routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+        true}">
+        <span class='arrow'>&#9656;</span>
+        <a [routerLink]="['hark']">Hark</a>
+      </li>
+
     </ul>
   </div>
 
