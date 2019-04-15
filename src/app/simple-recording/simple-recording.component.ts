@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ErrorMessageService } from '../error-message.service';
 import { WindowRefService } from '../window-ref.service';
 
+/** 
+ * The MediaRecorder type here needs to be declared.
+  See https://stackoverflow.com/questions/40051818/how-can-i-use-a-mediarecorder-object-in-an-angular2-application
+  for a method of including it fully within Typescript
+**/
 declare var MediaRecorder: any;
 
 @Component({
@@ -52,14 +57,23 @@ export class SimpleRecordingComponent implements OnInit {
   stop() {
     console.log("STOPPING AUDIO")
     this.recording = false;
-    this.mediaRecorder.stop();
+    try {
+      this.mediaRecorder.stop();
+    } catch (err) {
+      //this suppresses error is throw is timeout occurs after user presses the stop recording button.
 
+    }
     //this removes the pulsing microphone icon on the tab after the recording stops
     //see https://github.com/streamproc/MediaStreamRecorder/issues/76
     const window = this.windowRefService.nativeWindow;
-    window.streamReference.getAudioTracks().forEach(function (track) {
-      track.stop();
-    });
+    if (window.streamReference) {
+      window.streamReference.getAudioTracks().forEach(function (track) {
+        try {
+          track.stop();
+        } catch (err) { }
+      });
+    }
+
     window.streamReference = null;
   }
 
