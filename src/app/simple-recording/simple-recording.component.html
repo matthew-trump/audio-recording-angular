@@ -1,0 +1,30 @@
+<h2>Simple Audio</h2>
+
+<p class="description">
+  This is a demo of a simple method of in-browser audio capture as described in <a
+    href="https://medium.com/@bryanjenningz/how-to-record-and-play-audio-in-javascript-faa1b2b3e49b">this blog post</a>.
+  The method here uses the <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder">W3C MediaRecorder
+    object</a> to capture the stream,
+  which is played immediately after the audio stream is stopped.
+  We also use <a href="https://github.com/streamproc/MediaStreamRecorder/issues/76">this method</a> to remove pulsing
+  icon in the browser tap once the stream is stopped. The audio is not saved as a file.
+</p>
+
+<div class="audio-panel">
+
+  <p class="directions">Click to the microphone icon to record. The stream will
+    automatically stop after
+    {{timeoutMilliseconds/1000}} seconds,
+    and the captured audio will then play automatically.
+  </p>
+
+  <button mat-icon-button *ngIf="!recording" (click)="record()">
+    <mat-icon>mic</mat-icon>
+  </button>
+  <button mat-icon-button *ngIf="recording" (click)="stop()">
+    <mat-icon>mic_off</mat-icon>
+  </button>
+  <div class="pulse" *ngIf="recording"></div>
+
+  <audio #audioElement></audio>
+</div>
