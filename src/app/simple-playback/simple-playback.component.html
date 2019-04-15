@@ -1,0 +1,26 @@
+<h2>Simple Audio with Playback Controls</h2>
+
+<p class="description">
+  This is a small variation on the <a [routerLink]="['simple']">Simple Method</a> of in-browser audio capture.nIn this
+  example, the audio is not played
+  immediately after the stream ends, but is put as the source of an audio control.
+</p>
+
+<div class="audio-panel">
+
+  <p class="directions">Click to the microphone icon to record. The stream will
+    automatically timeout and stop after
+    {{timeoutMilliseconds/1000}} seconds. The audio controls can then be used
+    to play/replay the captured stream.
+  </p>
+
+  <button mat-icon-button *ngIf="!recording" (click)="record()">
+    <mat-icon>mic</mat-icon>
+  </button>
+  <button mat-icon-button *ngIf="recording" (click)="stop()">
+    <mat-icon>mic_off</mat-icon>
+  </button>
+  <div class="pulse" *ngIf="recording"></div>
+
+  <audio #audioElement></audio>
+</div>
