@@ -1,4 +1,4 @@
-# Sound Recording Angular
+# Audio Recording for Angular
 
 This is a demo project for demonstrating the various means by which audio can be capture and 
 played within an Angular application. Many of the techniques here are not Angular-specific,
