@@ -15,11 +15,15 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SimpleRecordingComponent } from './simple-recording/simple-recording.component';
+import { SimplePlaybackComponent } from './simple-playback/simple-playback.component';
+import { SimplePlaybackHarkComponent } from './simple-playback-hark/simple-playback-hark.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SimpleRecordingComponent
+    SimpleRecordingComponent,
+    SimplePlaybackComponent,
+    SimplePlaybackHarkComponent
   ],
   imports: [
     BrowserModule,
