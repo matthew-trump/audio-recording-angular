@@ -1,4 +1,11 @@
-# SoundRecordingAngular
+# Sound Recording Angular
+
+This is a demo project for demonstrating the various means by which audio can be capture and 
+played within an Angular application. Many of the techniques here are not Angular-specific,
+some being general to any JavaScript application, but there are specific tweaks that are 
+necessary to incorporate into an Angular app.
+
+## Description
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.9.
 
