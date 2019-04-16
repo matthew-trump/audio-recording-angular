@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   backendUrl: "http://localhost:8080",
   uploadPathFile: "/upload-file",
-  uploadPathGoogle: "/upload-google-storage",
+  uploadPathGoogleStorage: "/upload-google-storage",
+  uploadPathAwsS3: "/upload-aws-s3",
 };
 
