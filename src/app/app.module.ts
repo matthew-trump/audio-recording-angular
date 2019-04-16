@@ -33,6 +33,7 @@ import { RecordRtcComponent } from './record-rtc/record-rtc.component';
     AppRoutingModule,
     HttpClientModule,
     MatToolbarModule,
+    MatSelectModule,
     MatProgressSpinnerModule,
     MatIconModule,
     MatButtonModule
