@@ -15,14 +15,28 @@
     and if successful, audio control will appear to play the uploaded file from the server.
   </p>
 
-  <button mat-icon-button *ngIf="!recording" (click)="record()">
-    <mat-icon>mic</mat-icon>
-  </button>
-  <button mat-icon-button *ngIf="recording" (click)="stop()">
-    <mat-icon>mic_off</mat-icon>
-  </button>
+  <div>
+    <mat-form-field>
+      <mat-label>File destination</mat-label>
+      <mat-select [(value)]="fileDestination" (selectionChange)="reset()">
 
-  <div class="pulse" *ngIf="recording"></div>
+        <mat-option *ngFor="let destination of fileDestinations" [value]="destination">{{destination.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="fileDestination">
+    <button mat-icon-button *ngIf="!recording" (click)="record()">
+      <mat-icon>mic</mat-icon>
+    </button>
+    <button mat-icon-button *ngIf="recording" (click)="stop()">
+      <mat-icon>mic_off</mat-icon>
+    </button>
+
+    <div class="pulse" *ngIf="recording"></div>
+
+  </div>
 
   <div>
     <ng-container *ngIf="path">
