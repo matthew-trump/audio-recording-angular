@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ErrorMessageService } from '../error-message.service';
 import { WindowRefService } from '../window-ref.service';
 import * as Hark from 'hark';
