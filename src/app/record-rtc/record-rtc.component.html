@@ -1,3 +1,35 @@
-<p>
-  record-rtc works!
+<h2>Record RTC with File Upload</h2>
+
+<p class="description">
+  This demo of how to use <a href="https://github.com/muaz-khan/RecordRTC">Record RTC</a>
+  to record and save the audio stream as a WAV file. The upload demo as configured here requires
+  the <a href="https://github.com/matthew-trump/audio-recording-node-express">Audio Recording Node Express</a>
+  server, which is a companion to this project. By default the app attempt to upload to this server at
+  localhost:8080.
 </p>
+
+<div class="audio-panel">
+
+  <p class="directions">Click to the microphone icon to record. The stream will
+    automatically detect when you are finished speaking. The WAV file is then uploaded
+    and if successful, audio control will appear to play the uploaded file from the server.
+  </p>
+
+  <button mat-icon-button *ngIf="!recording" (click)="record()">
+    <mat-icon>mic</mat-icon>
+  </button>
+  <button mat-icon-button *ngIf="recording" (click)="stop()">
+    <mat-icon>mic_off</mat-icon>
+  </button>
+
+  <div class="pulse" *ngIf="recording"></div>
+
+  <div>
+    <ng-container *ngIf="path">
+      <div class="audioSrc">{{audioElement.src}}</div>
+    </ng-container>
+
+    <audio #audioElement></audio>
+
+  </div>
+</div>
