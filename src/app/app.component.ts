@@ -17,7 +17,7 @@ const AUDIO_SAMPLE_MEME_TYPE = "audio/wav";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Sound Recording Demo Angular';
+  title = 'Audio Recording Demo Angular';
   /** 
   recording: boolean;
 
