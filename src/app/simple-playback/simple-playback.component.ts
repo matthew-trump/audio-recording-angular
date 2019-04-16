@@ -30,6 +30,7 @@ export class SimplePlaybackComponent implements OnInit {
   ngOnInit() {
   }
   record() {
+
     this.recording = true;
     navigator.mediaDevices.getUserMedia({ audio: true })
       .then(stream => {
