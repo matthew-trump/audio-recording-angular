@@ -16,6 +16,8 @@ const AUDIO_FILE_EXTENSIONS: any = {
 }
 
 const BACKEND_URL: string = environment.backendUrl;
+const UPLOAD_PATH_FILE: string = environment.uploadPathFile;
+const UPLOAD_PATH_GOOGLE: string = environment.uploadPathGoogle;
 
 @Component({
   selector: 'app-record-rtc',
@@ -34,6 +36,21 @@ export class RecordRtcComponent implements OnInit {
   audioStream: MediaStream;
   recordRTC: RecordRTC;
 
+
+  fileDestinations: any[] = [
+    {
+      label: "Server",
+      path: UPLOAD_PATH_FILE,
+      addHostToSrc: true
+    },
+    {
+      label: "Google Storage",
+      path: UPLOAD_PATH_GOOGLE,
+      addHostToSrc: false
+    }
+  ];
+  fileDestination: any;
+
   constructor(
     private windowRefService: WindowRefService,
     private errorMessageService: ErrorMessageService,
@@ -45,8 +62,7 @@ export class RecordRtcComponent implements OnInit {
   ngOnInit() { }
 
   record() {
-    this.path = null;
-    this.audioElement.nativeElement.src = null
+    this.reset();
     const window = this.windowRefService.nativeWindow;
     const navigator = window.navigator;
     navigator.mediaDevices.getUserMedia({ audio: true })
@@ -54,6 +70,10 @@ export class RecordRtcComponent implements OnInit {
   }
   stop() {
     this.stoppedSpeaking();
+  }
+  reset() {
+    this.path = null;
+    this.audioElement.nativeElement.src = null
   }
   userMediaSuccess(stream: MediaStream) {
     this.errorMessageService.send(null);
@@ -120,7 +140,7 @@ export class RecordRtcComponent implements OnInit {
     formData.append('file', file);
     const headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
 
-    this.httpClient.post(BACKEND_URL + "/upload?sampleRateHertz=" + options.sampleRateHertz + "&encoding=" + options.encoding,
+    this.httpClient.post(BACKEND_URL + this.fileDestination.path + "?sampleRateHertz=" + options.sampleRateHertz + "&encoding=" + options.encoding,
       formData,
       { headers: headers })
       .toPromise()
@@ -128,10 +148,12 @@ export class RecordRtcComponent implements OnInit {
         console.log(res);
         //this.errorMessageService.send(null);
         this.path = res.path;
+        const srcUrl = this.fileDestination.addHostToSrc ? BACKEND_URL + '/' + this.path : this.path;
+
         const audioElement: HTMLAudioElement = this.audioElement.nativeElement;
         audioElement.controls = true;
         audioElement.autoplay = false;
-        audioElement.src = BACKEND_URL + '/' + this.path;
+        audioElement.src = srcUrl;
 
       },
         (err: any) => {
