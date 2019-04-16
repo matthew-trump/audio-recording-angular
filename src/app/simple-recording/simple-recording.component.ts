@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ErrorMessageService } from '../error-message.service';
 import { WindowRefService } from '../window-ref.service';
 
@@ -23,6 +23,7 @@ export class SimpleRecordingComponent implements OnInit {
   constructor(private windowRefService: WindowRefService, private errorMessageService: ErrorMessageService) { }
 
   ngOnInit() {
+
   }
   record() {
     this.recording = true;
