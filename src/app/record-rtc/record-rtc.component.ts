@@ -17,7 +17,8 @@ const AUDIO_FILE_EXTENSIONS: any = {
 
 const BACKEND_URL: string = environment.backendUrl;
 const UPLOAD_PATH_FILE: string = environment.uploadPathFile;
-const UPLOAD_PATH_GOOGLE: string = environment.uploadPathGoogle;
+const UPLOAD_PATH_GOOGLE_STORAGE: string = environment.uploadPathGoogleStorage;
+const UPLOAD_PATH_AWS_S3: string = environment.uploadPathAwsS3;
 
 @Component({
   selector: 'app-record-rtc',
@@ -45,7 +46,12 @@ export class RecordRtcComponent implements OnInit {
     },
     {
       label: "Google Storage",
-      path: UPLOAD_PATH_GOOGLE,
+      path: UPLOAD_PATH_GOOGLE_STORAGE,
+      addHostToSrc: false
+    },
+    {
+      label: "AWS S3",
+      path: UPLOAD_PATH_AWS_S3,
       addHostToSrc: false
     }
   ];
